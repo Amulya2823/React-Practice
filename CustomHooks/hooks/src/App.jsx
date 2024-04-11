@@ -5,15 +5,29 @@ import "./App.css";
 import React from "react";
 import axios from "axios";
 import useOnline from "./useOnline";
+import useInterval from "./useInterval";
 
 function App() {
+
+  const [count, setCount] = useState(0);
+
+  useInterval(() => {
+    setCount(c => c + 1);
+  }, 1000)
+
+  return (
+    <>
+      Timer is at {count}
+    </>
+  )
+}
 
   const onlineStatus = useOnline();
   if(onlineStatus){
     return "You are Online"
   }
   return "Please check your internet connection"
-  
+
 
   const useTodos = () => {
     const [todos, setTodos] = useState([]);
@@ -34,7 +48,7 @@ function App() {
       <MyComponent />
     </>
   );
-}
+
 
 class MyComponent extends React.Component {
   constructor(props) {
