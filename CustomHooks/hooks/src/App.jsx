@@ -4,8 +4,16 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import React from "react";
 import axios from "axios";
+import useOnline from "./useOnline";
 
 function App() {
+
+  const onlineStatus = useOnline();
+  if(onlineStatus){
+    return "You are Online"
+  }
+  return "Please check your internet connection"
+  
 
   const useTodos = () => {
     const [todos, setTodos] = useState([]);
